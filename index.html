@@ -1,420 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ketsu - Premium Bypass Solutions</title>
-  <meta name="description" content="Ketsu provides high-quality bypass solutions with competitive pricing and reliable performance.">
-  <style>
-    /*@import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');*/
-    @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
-
-    :root {
-      --bg-color: #0a0a0a;
-      --text-color: rgba(255, 255, 255, 0.9);
-      --accent-color: rgba(136, 136, 255, 0.7);
-      --accent-dark: rgba(85, 85, 170, 0.7);
-      --card-bg: rgba(0, 0, 0, 0.3);
-      --card-border: rgba(255, 255, 255, 0.05);
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      color: var(--text-color);
-      font-family: 'Exo 2';
-      overflow-x: hidden;
-      background-color: var(--bg-color);
-      scroll-behavior: smooth;
-    }
-
-    #vanta-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    h1, h2, h3 {
-      font-family: "Source Code Pro", monospace;
-      text-shadow: 0 0 15px var(--accent-color);
-      letter-spacing: -1px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: clamp(3rem, 8vw, 6rem);
-      margin: 2rem 0;
-    }
-
-    h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin: 1.5rem 0;
-      text-align: center;
-    }
-
-    h3 {
-      font-size: 1.5rem;
-      margin: 1rem 0;
-    }
-
-    .topnav {
-      position: sticky;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 1rem 0;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      z-index: 100;
-    }
-
-    .topnav a {
-      color: var(--text-color);
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-      font-size: 1rem;
-      margin: 0 0.5rem;
-      transition: all 0.3s ease;
-      border-radius: 10px;
-      font-weight: 500;
-    }
-
-    .topnav a:hover, .topnav a.active {
-      background-color: rgba(255, 255, 255, 0.1);
-      text-shadow: 0 0 10px var(--accent-color);
-    }
-
-    .page {
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      flex: 1;
-    }
-
-    .info {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .card {
-      flex: 1 1 250px;
-      max-width: 300px;
-      padding: 1.75rem;
-      border-radius: 20px;
-      background-color: var(--card-bg);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      margin: 0;
-      text-align: center;
-      font-weight: 500;
-      border: 1px solid var(--card-border);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-      border-color: rgba(136, 136, 255, 0.3);
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: var(--accent-color);
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-      font-family: 'Source Code Pro', monospace;
-      margin: 0.5rem 0;
-    }
-
-    .btn:hover {
-      background-color: var(--accent-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(136, 136, 255, 0.3);
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      border: 1px solid var(--accent-color);
-      color: var(--text-color);
-    }
-
-    .btn-outline:hover {
-      background-color: rgba(136, 136, 255, 0.1);
-    }
-
-    .pricing-plans {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .pricing-card {
-      flex: 1 1 300px;
-      max-width: 350px;
-      padding: 2rem;
-      border-radius: 20px;
-      background-color: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      text-align: center;
-    }
-
-    .pricing-card.featured {
-      border: 1px solid var(--accent-color);
-      box-shadow: 0 0 20px rgba(136, 136, 255, 0.2);
-      transform: scale(1.05);
-    }
-
-    .price {
-      font-size: 2.5rem;
-      margin: 1rem 0;
-      color: var(--accent-color);
-    }
-
-    .price span {
-      font-size: 1rem;
-      opacity: 0.8;
-    }
-
-    .features {
-      text-align: left;
-      margin: 1.5rem 0;
-    }
-
-    .features li {
-      margin: 0.75rem 0;
-      list-style-type: none;
-      position: relative;
-      padding-left: 1.5rem;
-    }
-
-    .features li:before {
-      content: "✓";
-      color: var(--accent-color);
-      position: absolute;
-      left: 0;
-    }
-
-    .contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      backdrop-filter: blur(12px);
-      padding: 2rem;
-      border-radius: 20px;
-      border: 1px solid var(--card-border);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background-color: rgba(0, 0, 0, 0.3);
-      color: var(--text-color);
-      font-family: 'Source Code Pro', monospace;
-      transition: border 0.3s ease;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--accent-color);
-    }
-
-    .form-group textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      margin-top: auto;
-      background-color: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .social-links a {
-      color: var(--text-color);
-      font-size: 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-links a:hover {
-      color: var(--accent-color);
-      transform: translateY(-3px);
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.2s; }
-    .delay-2 { animation-delay: 0.4s; }
-    .delay-3 { animation-delay: 0.6s; }
-
-    /* Testimonials */
-    .testimonials {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 3rem 0;
-    }
-
-    .testimonial {
-      flex: 1 1 300px;
-      max-width: 350px;
-      padding: 1.5rem;
-      border-radius: 15px;
-      background-color: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-    }
-
-    .testimonial-content {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-
-    .testimonial-author {
-      font-weight: 600;
-      text-align: right;
-    }
-
-    /* FAQ */
-    .faq {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      margin-bottom: 1rem;
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-    }
-
-    .faq-question {
-      padding: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-question:after {
-      content: "+";
-      font-size: 1.5rem;
-    }
-
-    .faq-question.active:after {
-      content: "-";
-    }
-
-    .faq-answer {
-      padding: 0 1rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-answer.show {
-      padding: 0 1rem 1rem;
-      max-height: 500px;
-    }
-
-    @media (max-width: 768px) {
-      .topnav {
-        flex-direction: column;
-        align-items: center;
-        padding: 0.5rem 0;
-      }
-      
-      .topnav a {
-        width: 80%;
-        text-align: center;
-        margin: 0.25rem 0;
-      }
-      
-      .page {
-        padding: 1rem;
-      }
-      
-      .card, .pricing-card {
-        flex: 1 1 100%;
-      }
-      
-      h1 {
-        font-size: 2.5rem;
-      }
-
-      .pricing-card.featured {
-        transform: none;
-      }
-    }
-  </style>
+  <meta name="description" content="Ketsu provides high-quality bypass solutions with competitive pricing and reliable performance." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="vanta-bg"></div>
@@ -426,10 +17,9 @@
       <a href="#contact" data-page="contact">Contact</a>
     </div>
 
-    <!-- Home Page -->
+    <!-- Home Section -->
     <div id="home" class="page">
       <h1 class="fade-in">Ketsu</h1>
-
       <div class="info fade-in delay-1">
         <div class="card">
           <h3>High Performance</h3>
@@ -484,270 +74,92 @@
       </div>
     </div>
 
-    <!-- Purchase Page -->
+    <!-- Purchase Section -->
     <div id="purchase" class="page hidden">
       <h1>Purchase</h1>
-      
       <h2>Choose Your Plan</h2>
       <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
         Select the plan that fits your needs. All plans include 24/7 support, regular updates, 
         and access to our premium features. Upgrade or downgrade at any time.
       </p>
-
       <div class="pricing-plans">
         <div class="pricing-card">
-          <h3>Basic</h3>
-          <div class="price">$9.99<span>/month</span></div>
+          <h3>Daily</h3>
+          <div class="price">$1.99<span>/day</span></div>
           <ul class="features">
-            <li>Standard bypass features</li>
-            <li>Email support</li>
-            <li>Weekly updates</li>
-            <li>Community access</li>
-            <li>1 simultaneous device</li>
+            <li>Advanced bypasses</li>
+            <li>Frequent updates</li>
+            <li>Fast support</li>
+            <li>Unmatched Performance</li>
           </ul>
-          <a href="#" class="btn btn-outline">Select Plan</a>
+          <a href="#" class="btn btn-outline">Buy Now</a>
         </div>
 
         <div class="pricing-card featured">
-          <h3>Pro</h3>
-          <div class="price">$19.99<span>/month</span></div>
+          <h3>Monthly</h3>
+          <div class="price">$7.99<span>/month</span></div>
           <ul class="features">
-            <li>All Basic features</li>
-            <li>Advanced bypass options</li>
-            <li>Priority support</li>
-            <li>Daily updates</li>
-            <li>3 simultaneous devices</li>
-            <li>Early access to new features</li>
+            <li>Advanced bypasses</li>
+            <li>Frequent updates</li>
+            <li>Fast support</li>
+            <li>Unmatched Performance</li>
           </ul>
-          <a href="#" class="btn">Select Plan</a>
+          <a href="#" class="btn">Buy Now</a>
         </div>
 
         <div class="pricing-card">
-          <h3>Enterprise</h3>
-          <div class="price">$49.99<span>/month</span></div>
+          <h3>Yearly</h3>
+          <div class="price">24.99</div>
           <ul class="features">
-            <li>All Pro features</li>
-            <li>Custom solutions</li>
-            <li>24/7 dedicated support</li>
-            <li>Real-time updates</li>
-            <li>10 simultaneous devices</li>
-            <li>Custom feature requests</li>
+            <li>Advanced bypasses</li>
+            <li>Frequent updates</li>
+            <li>Fast support</li>
+            <li>Unmatched Performance</li>
           </ul>
-          <a href="#" class="btn btn-outline">Select Plan</a>
-        </div>
-      </div>
-
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq">
-        <div class="faq-item">
-          <div class="faq-question">What payment methods do you accept?</div>
-          <div class="faq-answer">
-            <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and cryptocurrency (Bitcoin, Ethereum).</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Can I cancel my subscription anytime?</div>
-          <div class="faq-answer">
-            <p>Yes, you can cancel your subscription at any time. Your access will continue until the end of your current billing period.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">Is there a free trial available?</div>
-          <div class="faq-answer">
-            <p>We offer a 7-day free trial for all new users. No credit card is required to start the trial.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">How often are updates released?</div>
-          <div class="faq-answer">
-            <p>We release updates frequently to ensure compatibility and add new features. Basic plans receive weekly updates, Pro plans get daily updates, and Enterprise has real-time updates.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">What if I need help setting up?</div>
-          <div class="faq-answer">
-            <p>Our support team is available 24/7 to assist with setup and troubleshooting. Pro and Enterprise plans receive priority support.</p>
-          </div>
+          <a href="#" class="btn btn-outline">Buy Now</a>
         </div>
       </div>
     </div>
 
-    <!-- Contact Page -->
+    <!-- Contact Section -->
     <div id="contact" class="page hidden">
       <h1>Contact Us</h1>
-      
-      <div class="contact-form">
-        <form id="contactForm">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <select id="subject" name="subject" required>
-              <option value="">Select a subject</option>
-              <option value="support">Technical Support</option>
-              <option value="sales">Sales Inquiry</option>
-              <option value="billing">Billing Question</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-          <button type="submit" class="btn">Send Message</button>
-        </form>
-      </div>
-
-      <h2 style="margin-top: 3rem;">Other Ways to Reach Us</h2>
-      <div class="info">
-        <div class="card">
-          <h3>Email</h3>
-          <p>support@ketsu.example</p>
-          <a href="mailto:support@ketsu.example" class="btn btn-outline">Email Us</a>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required />
         </div>
-        <div class="card">
-          <h3>Discord</h3>
-          <p>Join our community server for quick help</p>
-          <a href="#" class="btn btn-outline">Join Discord</a>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
         </div>
-        <div class="card">
-          <h3>Twitter</h3>
-          <p>Follow us for updates and announcements</p>
-          <a href="#" class="btn btn-outline">Follow @Ketsu</a>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" required></textarea>
         </div>
-      </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
     </div>
 
     <footer>
       <div class="social-links">
-        <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" title="Twitter">X</a>
+        <a href="#" title="Discord">💬</a>
+        <a href="#" title="GitHub">🐱</a>
       </div>
-      <p>&copy; 2023 Ketsu. All rights reserved.</p>
-      <p><a href="#" style="color: var(--accent-color);">Privacy Policy</a> | <a href="#" style="color: var(--accent-color);">Terms of Service</a></p>
+      <p>&copy; 2025 Ketsu. All rights reserved.</p>
     </footer>
   </div>
 
-  <!-- Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  
-  <!-- Three.js and Vanta.js for background -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+  <script src="client.js"></script>
+  <!-- Vanta.js Scripts -->
+  <!-- Vanta Fog Background -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.fog.min.js"></script>
 
-  <script>
-    // Initialize Vanta.js background
-    document.addEventListener("DOMContentLoaded", function() {
-      VANTA.FOG({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        highlightColor: 0x9999ff,
-        midtoneColor: 0x111133,
-        lowlightColor: 0x000000,
-        baseColor: 0x000011,
-        blurFactor: 0.3,
-        speed: 0.2,
-        zoom: 0.9,
-        waveHeight: 5,
-        waveSpeed: 0.2,
-        density: 0.3
-      });
 
-      // Page navigation
-      const navLinks = document.querySelectorAll('.topnav a');
-      const pages = document.querySelectorAll('.page');
-      
-      function showPage(pageId) {
-        pages.forEach(page => {
-          page.classList.add('hidden');
-          if (page.id === pageId) {
-            page.classList.remove('hidden');
-          }
-        });
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('data-page') === pageId) {
-            link.classList.add('active');
-          }
-        });
-        
-        // Scroll to top when changing pages
-        window.scrollTo(0, 0);
-      }
-      
-      navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const pageId = this.getAttribute('data-page');
-          showPage(pageId);
-          history.pushState(null, null, `#${pageId}`);
-        });
-      });
-      
-      // Check URL hash on load
-      const initialPage = window.location.hash.substring(1) || 'home';
-      showPage(initialPage);
-      
-      // Handle browser back/forward
-      window.addEventListener('popstate', function() {
-        const pageId = window.location.hash.substring(1) || 'home';
-        showPage(pageId);
-      });
-      
-      // FAQ functionality
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-          this.classList.toggle('active');
-          const answer = this.nextElementSibling;
-          answer.classList.toggle('show');
-        });
-      });
-      
-      // Form submission
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          // Here you would normally send the form data to your server
-          alert('Thank you for your message! We will get back to you soon.');
-          this.reset();
-        });
-      }
-      
-      // Animate elements when they come into view
-      const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.fade-in');
-        
-        elements.forEach(element => {
-          const elementPosition = element.getBoundingClientRect().top;
-          const windowHeight = window.innerHeight;
-          
-          if (elementPosition < windowHeight - 100) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-          }
-        });
-      };
-      
-      // Initial check
-      animateOnScroll();
-      
-      // Check on scroll
-      window.addEventListener('scroll', animateOnScroll);
-    });
-  </script>
+
+
+
 </body>
 </html>
