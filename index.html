@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ketsu</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+15&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: rgba(255, 255, 255, 0.9);
+      --accent-color: rgba(136, 136, 255, 0.7);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      color: var(--text-color);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+      background-color: var(--bg-color);
+    }
+
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: "Source Code Pro", monospace;
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin: 2rem 0;
+      text-shadow: 0 0 15px var(--accent-color);
+      letter-spacing: -2px;
+    }
+
+    .topnav {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 1rem 0;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    .topnav a {
+      color: var(--text-color);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-size: 1rem;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .topnav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      text-shadow: 0 0 10px var(--accent-color);
+    }
+
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .info p {
+      flex: 1 1 250px;
+      max-width: 300px;
+      padding: 1.75rem;
+      border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      margin: 0;
+      text-align: center;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info p:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      border-color: rgba(136, 136, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .topnav {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem 0;
+      }
+      
+      .topnav a {
+        width: 80%;
+        text-align: center;
+        margin: 0.25rem 0;
+      }
+      
+      .info {
+        padding: 1rem;
+      }
+      
+      .info p {
+        flex: 1 1 100%;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="vanta-bg"></div>
+
+  <div class="content">
+    <div class="topnav">
+      <a href="#Home">Home</a>
+      <a href="#Purchase">Purchase</a>
+      <a href="#Contact">Contact</a>
+    </div>
+
+    <h1>Ketsu</h1>
+
+    <div class="info">
+      <p>The best bypasses</p>
+      <p>Cheap Pricing compared to competition</p>
+      <p>No memory leaks (to my knowledge)</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: 0x9999ff,
+        midtoneColor: 0x111133,
+        lowlightColor: 0x000000,
+        baseColor: 0x000011,
+        blurFactor: 0.3,  // Reduced from 0.5 to make fog less dense
+        speed: 0.2,      // Slowed down the movement
+        zoom: 0.9,       // Slightly zoomed out
+        waveHeight: 5,   // Reduced wave intensity
+        waveSpeed: 0.2,  // Slower wave movement
+        density: 0.3     // Lower density for less fog
+      });
+    });
+  </script>
+</body>
+</html>
