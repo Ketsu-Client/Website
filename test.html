@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KETSU</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+UI+Display:wght@400;700&display=swap');
+        
+        :root {
+            --bg-color: #0d0d0d;
+            --text-color: #FFFFFF;
+            --accent-color: #ff1a1a;
+            --card-bg: rgba(25, 25, 25, 0.85);
+            --glow: 0 0 15px rgba(255, 26, 26, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SF UI Display', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(-45deg, #0d0d0d, #1a0000, #0d0d0d, #1a0000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            opacity: 0.7;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            height: 45px;
+            filter: drop-shadow(var(--glow));
+        }
+        
+        .kanji {
+            height: 35px;
+            filter: drop-shadow(var(--glow));
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 70px;
+            animation: fadeIn 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--accent-color);
+            letter-spacing: -1px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        
+        .feature-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .feature-card p {
+            line-height: 1.6;
+        }
+        
+        .auth-section {
+            display: none;
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .auth-section.active {
+            display: block;
+        }
+        
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .auth-form input {
+            padding: 12px 15px;
+            background-color: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(255, 26, 26, 0.3);
+        }
+        
+        .auth-form button {
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .auth-form button:hover {
+            background-color: #e60000;
+            box-shadow: 0 0 15px rgba(255, 26, 26, 0.5);
+        }
+        
+        .auth-toggle {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .auth-toggle a {
+            color: var(--accent-color);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .auth-toggle a:hover {
+            text-decoration: underline;
+        }
+        
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 220px;
+            margin: 40px auto;
+            padding: 15px;
+            background-color: #5865F2;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(88, 101, 242, 0.4);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .pricing {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .pricing.active {
+            display: block;
+        }
+        
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+        
+        .pricing p.subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+        
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .price-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: var(--accent-color);
+        }
+        
+        .price-card.popular {
+            border: 1px solid var(--accent-color);
+            position: relative;
+        }
+        
+        .price-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 3px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .price-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--accent-color);
+        }
+        
+        .price small {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+        
+        .price-card ul {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .price-card ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .price-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .buy-btn:hover {
+            background-color: #e60000;
+            box-shadow: 0 0 15px rgba(255, 26, 26, 0.5);
+        }
+        
+        .payment-methods {
+            margin-top: 50px;
+            text-align: center;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .payment-methods h3 {
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-icons img {
+            height: 40px;
+            filter: grayscale(30%);
+            transition: all 0.3s;
+        }
+        
+        .payment-icons img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 5;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav {
+                margin-top: 15px;
+            }
+            
+            nav a {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .auth-section {
+                padding: 30px 20px;
+            }
+            
+            .price-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header>
+        <div class="logo-container">
+            <img src="https://cdn.discordapp.com/attachments/1119369352194560090/1360091989839843530/logo_large_nobg.png" alt="KETSU" class="logo">
+            <img src="https://cdn.discordapp.com/attachments/1119369352194560090/1360091990091366442/kanji128.png" alt="KETSU Kanji" class="kanji">
+        </div>
+        <nav>
+            <a href="#" class="home-link">Home</a>
+            <a href="#" class="pricing-link">Pricing</a>
+            <a href="#" class="login-link">Login</a>
+        </nav>
+    </header>
+    
+    <div class="main-content">
+        <section class="hero">
+            <h1 class="animate__animated animate__fadeIn">KETSU CLIENT</h1>
+            <p>Premium bypass solution with unmatched performance</p>
+        </section>
+        
+        <section class="features">
+            <div class="feature-card animate__animated animate__fadeInUp">
+                <h3>Why Choose Us?</h3>
+                <p>Undetectable bypasses with maximum performance and stability. Our client is optimized to run smoothly even on low-end systems while delivering top-tier results.</p>
+            </div>
+            <div class="feature-card animate__animated animate__fadeInUp animate__delay-1s">
+                <h3>Key Benefits</h3>
+                <ul>
+                    <li>Memory efficient design</li>
+                    <li>Regular weekly updates</li>
+                    <li>24/7 premium support</li>
+                    <li>Lifetime purchase option</li>
+                    <li>12-hour trial keys available</li>
+                </ul>
+            </div>
+            <div class="feature-card animate__animated animate__fadeInUp animate__delay-2s">
+                <h3>Q&A</h3>
+                <ul>
+                    <li><strong>How long do keys last?</strong><br>Login keys last 12 hours, but you can purchase lifetime access.</li>
+                    <li><strong>Is it detectable?</strong><br>Our bypass methods are constantly updated to stay undetected.</li>
+                    <li><strong>Support?</strong><br>We offer Discord support with fast response times.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <div style="text-align: center;">
+            <a href="https://discord.gg/yourinvite" class="discord-btn animate__animated animate__pulse animate__infinite">
+                JOIN OUR DISCORD
+            </a>
+        </div>
+        
+        <section id="auth-section" class="auth-section">
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <input type="text" placeholder="Username" id="login-username">
+                <input type="password" placeholder="Password" id="login-password">
+                <button id="login-btn">LOGIN</button>
+                <div class="auth-toggle">
+                    Don't have an account? <a id="show-register">Register here</a>
+                </div>
+                <div class="loading" id="login-loading">
+                    <div class="spinner"></div>
+                </div>
+                <div id="login-error" style="color: var(--accent-color); text-align: center; display: none;"></div>
+            </div>
+            
+            <div id="register-form" class="auth-form" style="display: none;">
+                <h2>Register</h2>
+                <input type="text" placeholder="Username" id="register-username">
+                <input type="password" placeholder="Password" id="register-password">
+                <input type="password" placeholder="Confirm Password" id="register-confirm">
+                <input type="text" placeholder="License Key (12-hour trial or purchase)" id="register-key">
+                <button id="register-btn">REGISTER</button>
+                <div class="auth-toggle">
+                    Already have an account? <a id="show-login">Login here</a>
+                </div>
+                <div class="loading" id="register-loading">
+                    <div class="spinner"></div>
+                </div>
+                <div id="register-error" style="color: var(--accent-color); text-align: center; display: none;"></div>
+            </div>
+            
+            <div id="key-form" class="auth-form" style="display: none;">
+                <h2>Get Key</h2>
+                <p style="text-align: center; margin-bottom: 20px;">Login keys are valid for 12 hours. Purchase lifetime access for $10.</p>
+                <button id="get-key-btn">GENERATE 12-HOUR TRIAL KEY</button>
+                <div class="loading" id="key-loading">
+                    <div class="spinner"></div>
+                </div>
+                <div id="key-result" style="text-align: center; margin-top: 20px; word-break: break-all; font-family: monospace; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 5px;"></div>
+                <div id="key-error" style="color: var(--accent-color); text-align: center; display: none; margin-top: 15px;"></div>
+                <div style="text-align: center; margin-top: 25px;">
+                    <a href="#" class="pricing-link" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">Purchase Lifetime Access →</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pricing" class="pricing">
+            <h2>Pricing Plans</h2>
+            <p class="subtitle">Choose the plan that fits your needs</p>
+            
+            <div class="price-cards">
+                <div class="price-card">
+                    <h3>12-Hour Trial</h3>
+                    <div class="price">FREE</div>
+                    <ul>
+                        <li>Full feature access</li>
+                        <li>12 hour duration</li>
+                        <li>Basic support</li>
+                        <li>Single device</li>
+                    </ul>
+                    <button class="buy-btn" style="background-color: #333;">Get Trial Key</button>
+                </div>
+                
+                <div class="price-card popular">
+                    <h3>Lifetime Access</h3>
+                    <div class="price">$10 <small>one time</small></div>
+                    <ul>
+                        <li>Permanent access</li>
+                        <li>All current and future features</li>
+                        <li>Priority support</li>
+                        <li>Multiple devices</li>
+                        <li>Exclusive updates</li>
+                    </ul>
+                    <a href="#" class="buy-btn">BUY NOW</a>
+                </div>
+                
+                <div class="price-card">
+                    <h3>VIP Package</h3>
+                    <div class="price">$25 <small>one time</small></div>
+                    <ul>
+                        <li>Everything in Lifetime</li>
+                        <li>VIP support channel</li>
+                        <li>Feature requests</li>
+                        <li>Early access to updates</li>
+                        <li>Custom configurations</li>
+                    </ul>
+                    <a href="#" class="buy-btn">BUY NOW</a>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <h3>Payment Methods</h3>
+                <div class="payment-icons">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Litecoin.svg" alt="Litecoin">
+                    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg" alt="XRP" style="filter: brightness(0) invert(1);">
+                    <img src="https://cryptologos.cc/logos/solana-sol-logo.svg" alt="Solana" style="filter: brightness(0) invert(1);">
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        &copy; 2024 KETSU. All rights reserved.
+    </footer>
+    
+    <script>
+        // Navigation
+        document.querySelector('.home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.auth-section').classList.remove('active');
+            document.querySelector('.pricing').classList.remove('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+        
+        document.querySelector('.pricing-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.auth-section').classList.remove('active');
+            document.querySelector('.pricing').classList.add('active');
+            window.scrollTo({top: document.querySelector('.pricing').offsetTop - 80, behavior: 'smooth'});
+        });
+        
+        document.querySelector('.login-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.auth-section').classList.add('active');
+            document.querySelector('.pricing').classList.remove('active');
+            document.getElementById('login-form').style.display = 'block';
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('key-form').style.display = 'none';
+            window.scrollTo({top: document.querySelector('.auth-section').offsetTop - 80, behavior: 'smooth'});
+        });
+        
+        // Toggle between login/register
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form').style.display = 'block';
+        });
+        
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        });
+        
+        // Simulate auth (replace with KeyAuth API later)
+        document.getElementById('login-btn').addEventListener('click', function() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            document.getElementById('login-loading').style.display = 'block';
+            document.getElementById('login-error').style.display = 'none';
+            
+            setTimeout(function() {
+                document.getElementById('login-loading').style.display = 'none';
+                
+                if(username && password) {
+                    // Successful login would show key form
+                    document.getElementById('login-form').style.display = 'none';
+                    document.getElementById('key-form').style.display = 'block';
+                } else {
+                    document.getElementById('login-error').textContent = 'Invalid credentials';
+                    document.getElementById('login-error').style.display = 'block';
+                }
+            }, 1000);
+        });
+        
+        document.getElementById('get-key-btn').addEventListener('click', function() {
+            document.getElementById('key-loading').style.display = 'block';
+            document.getElementById('key-error').style.display = 'none';
+            document.getElementById('key-result').textContent = '';
+            
+            setTimeout(function() {
+                document.getElementById('key-loading').style.display = 'none';
+                // Simulate key generation - replace with KeyAuth API
+                document.getElementById('key-result').textContent = 'KETSU-' + Math.random().toString(36).substring(2, 10).toUpperCase() + 
+                                                                   '-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+            }, 1000);
+        });
+        
+        // For demo purposes - would be replaced with KeyAuth integration
+        document.getElementById('register-btn').addEventListener('click', function() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+            const key = document.getElementById('register-key').value;
+            
+            document.getElementById('register-loading').style.display = 'block';
+            document.getElementById('register-error').style.display = 'none';
+            
+            setTimeout(function() {
+                document.getElementById('register-loading').style.display = 'none';
+                
+                if(password !== confirm) {
+                    document.getElementById('register-error').textContent = 'Passwords do not match';
+                    document.getElementById('register-error').style.display = 'block';
+                    return;
+                }
+                
+                if(!username || !password || !key) {
+                    document.getElementById('register-error').textContent = 'All fields required';
+                    document.getElementById('register-error').style.display = 'block';
+                    return;
+                }
+                
+                // Simulate successful registration
+                document.getElementById('register-form').style.display = 'none';
+                document.getElementById('login-form').style.display = 'block';
+                document.getElementById('login-username').value = username;
+                document.getElementById('login-password').value = password;
+            }, 1000);
+        });
+        
+        // Smooth scroll for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
